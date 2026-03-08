@@ -1,0 +1,91 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    background-image: url("./media/bg1.jpg");
+    background-size: cover;
+}
+
+.header{
+    text-align: left;
+    background-color: rgb(183, 228, 235);
+    border-radius: 0% 0% 30% 30%;
+}
+
+.header h1{
+    padding: 0.5rem;
+    padding-left: 2rem;
+}
+
+.desktop{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.calcSide{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    width: 50%;
+    flex: 1 1 auto;
+    border-radius: 20%;
+    min-width: 80%;
+}
+
+.calcHead{
+    justify-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 50%;
+    background-color: rgb(179, 180, 199);
+    border-radius:10%;
+   
+}
+
+.calcHead .inputBar{
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 2%;
+    width: 80%;
+    background-color: rgb(126, 127, 141);
+    height: auto;
+    margin: 2rem 0.2rem 0rem 0.2rem;
+    box-shadow: inset 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.384);
+}
+
+.calcHead label{
+    text-align: right;
+    padding: 0.3rem;
+    font-size: 1.5rem;
+}
+
+#lastNum{
+    padding-right: 7%;
+    user-select: none;
+    font-weight: 500;
+}
+
+#resultNum{
+    user-select: text;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+
+.paperSide{
+    width: 50%;
+    flex: 1 1 auto;
+}
