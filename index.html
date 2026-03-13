@@ -5,28 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="header">
-      <h1>The calculator</h1>
+      <h1>Online Calculator</h1>
     </div>
     <!--<a href="https://www.freepik.com/free-photo/brown-wood-textured-background-with-design-space_21631254.htm#fromView=keyword&page=1&position=1&uuid=f78d807d-9efa-495d-bcfc-5950336c26d7&query=Seamless+wood+pattern">Image by rawpixel.com on Freepik</a> -->
     <div class="desktop">
       <div class="calcSide">
         <div class="calcContainer">
-          <div class="calcHead">
+          <div class="calcHead calcBorder">
             <div class="inputBar">
               <label id="lastNum">0</label>
               <label id="resultNum">0</label>
             </div>
           </div>
-          <div class="calcBody">
+          <div class="calcBody calcBorder">
             <div class="numBtnsContainer"></div>
             <div class="operationBtnsContainer"></div>
           </div>
         </div>
       </div>
-      <div class="paperSide"></div>
+      <div class="paperSide">
+        <div class="paper"><label>History</label></div>
+      </div>
     </div>
     <script src="./calculator.js"></script>
   </body>
