@@ -3,7 +3,7 @@
 function Calculator(){
     const calc = {};
     calc.queue =[];
-    calc.hist = new Array();
+    calc.hist;
     calc.lastNum=null;
     calc.lastOp=null;
     calc.numBtnsContainer = document.querySelector(".numBtnsContainer");
@@ -156,17 +156,17 @@ function Calculator(){
     };
 
     calc.updatePaper = function(expression,i){
-            const element = document.createElement("p");
+            const element = document.createElement("div");
             element.setAttribute("data-id",i);
             element.textContent = expression
             element.classList.add("expression");
+            
             this.paper.insertAdjacentElement("afterbegin",element);
 
     }
 
     calc.displaySavedPaper = function (){
-        if(localStorage.getItem("hist")===null) return;
-        this.hist = new Array(JSON.parse(localStorage.getItem("hist")));
+        this.hist = JSON.parse(localStorage.getItem("hist")) || [];
         this.hist?.forEach((exp, i)=>{
             this.updatePaper(exp,i)
         })
