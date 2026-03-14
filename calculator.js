@@ -160,7 +160,13 @@ function Calculator(){
             element.setAttribute("data-id",i);
             element.textContent = expression
             element.classList.add("expression");
-            
+            const delBtn = document.createElement("div");
+            delBtn.classList.add("eraser");
+            const img = document.createElement("img");
+            img.classList.add("eraserImg");
+            img.setAttribute("src", "./media/eraser.svg");
+            delBtn.appendChild(img);
+            element.appendChild(delBtn);
             this.paper.insertAdjacentElement("afterbegin",element);
 
     }

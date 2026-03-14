@@ -147,6 +147,7 @@ body{
     max-width: 50%;
     width: 5rem;
     overflow: hidden;
+    gap: 0.2rem;
 
     
 }
@@ -162,6 +163,8 @@ body{
     transition: 0.2s ease-in-out;
     background-color: aliceblue;
     box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.295);
+    align-content: center;
+    justify-self: center;
 }
 
 .numBtn{
@@ -225,4 +228,24 @@ body{
     display: flex;
     flex-direction: column;
     max-height: fit-content;
+}
+
+.expression{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    font-size: 2vmax;
+    padding: 0.2rem;
+    user-select: auto;
+}
+
+.eraserImg{
+    width: 1.3rem;
+    aspect-ratio: 1/1;
+    height: auto;
+    display: inline;
+    align-self: baseline;
+    cursor: pointer;
 }
