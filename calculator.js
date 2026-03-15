@@ -8,14 +8,27 @@ function Calculator(){
     calc.lastOp=null;
     calc.numBtnsContainer = document.querySelector(".numBtnsContainer");
     calc.opBtnsContainer = document.querySelector(".operationBtnsContainer");
-    calc.paper = document.querySelector(".paperContents");
+    calc.paper = document.querySelector(".paper");
     calc.lastNumEl = document.querySelector("#lastNum");
     calc.resultNumEl = document.querySelector("#resultNum");
 
     calc.calculate = function (clicked){
          //preventing calculating without parameters
+        if(this.queue.at(-1)===".") this.queue.push(0,0); //adds 2 zeroes if last digit is .
         let num = +this.queue.join("");
-        console.log(this.hist);
+        if(clicked==="C"){
+            this.queue = String(num).split("");
+            this.queue.splice(-1,1);
+            num = +this.queue.join("")
+            //preventing doing the last operation again on the cleared number
+            this.lastNum=num;
+            this.lastOp="C";
+            this.displayNums(num);
+            return;
+        }
+
+
+
         //resets the queue to enable the user from doing operations on two numbers
         this.queue.splice(0, this.queue.length);
         this.lastNum= this.lastNum===null? num: this.lastNum;
@@ -25,6 +38,8 @@ function Calculator(){
             return;
         }
         let result=0;
+
+
         switch (this.lastOp){
             case '+':
                 result = this.lastNum + num;
@@ -44,6 +59,9 @@ function Calculator(){
                 break;
             case '=':
                 result = num!==this.lastNum? num: this.lastNum;
+                break;
+            case "C":
+                result = num;
         }
 
         switch(clicked){
@@ -61,15 +79,11 @@ function Calculator(){
                 this.displayNums(0);
                 return;
                 break;
-            case "C":
-                this.queue.pop();
-                this.displayNums();
-                return;
-                break;
+
             default:
                 this.lastOp = clicked;
         }
-        
+
         this.lastNum = result;
         this.displayNums(result);
         this.lastOp = clicked;
@@ -149,13 +163,13 @@ function Calculator(){
         //add string to hist array
         this.hist.push(expression);
         //reset the hist paper
-        this.updatePaper(expression, this.hist.length-1);
+        this.createPaperRow(expression, this.hist.length-1);
         //add string to localstrorage
         localStorage.setItem("hist",JSON.stringify(this.hist));
 
     };
 
-    calc.updatePaper = function(expression,i){
+    calc.createPaperRow = function(expression,i){
             const element = document.createElement("div");
             element.setAttribute("data-id",i);
             element.textContent = expression
@@ -167,17 +181,34 @@ function Calculator(){
             img.setAttribute("src", "./media/eraser.svg");
             delBtn.appendChild(img);
             element.appendChild(delBtn);
-            this.paper.insertAdjacentElement("afterbegin",element);
+            this.paper.querySelector(".paperContents").insertAdjacentElement("afterbegin",element);
 
     }
 
     calc.displaySavedPaper = function (){
         this.hist = JSON.parse(localStorage.getItem("hist")) || [];
         this.hist?.forEach((exp, i)=>{
-            this.updatePaper(exp,i)
-        })
-        
-    }
+            this.createPaperRow(exp,i)
+        });      
+    };
+
+    calc.removeFromPaper = function(id){
+        //remove all if id is "all"
+        if(id==="all"){
+            localStorage.removeItem("hist");
+            this.hist.splice(0, this.hist.length);
+            //removing all rows from the paper in this current session
+            this.paper.querySelector(".paperContents").textContent ="";
+            return;
+        }
+        //remove row from history array
+        this.hist.splice(id,1);
+        localStorage.setItem("hist",JSON.stringify(this.hist));
+        this.paper.querySelector(".paperContents").textContent ="";
+        this.displaySavedPaper();
+
+    };
+
     return calc;
 };
 
@@ -191,6 +222,11 @@ calculator.opBtnsContainer.addEventListener("click",e =>{
 calculator.numBtnsContainer.addEventListener("click", e =>{
     if(e.target.tagName === "BUTTON") calculator.pressNum(e.target.dataset.num);
 });
+
+calculator.paper.addEventListener("click", e=>{
+    if(e.target.classList.contains("eraserImg")) calculator.removeFromPaper(e.target.closest("[data-id]").dataset.id);
+});
+
 
 
 
