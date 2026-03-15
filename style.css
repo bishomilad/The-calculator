@@ -249,3 +249,30 @@ body{
     align-self: baseline;
     cursor: pointer;
 }
+
+.footer{
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 0;
+    bottom: 0;
+    text-align: center;
+    height: fit-content;
+    margin-top: auto;
+
+}
+
+.footer p{
+    height: 0.5rem;
+    font-weight: 700;
+}
+
+
+.socialIcon{
+    width: 1.2rem;
+    height: auto;
+    transition: 0.5s ease-in-out;
+}
+
+.socialIcon:hover{
+    transform: rotate(1.2turn) scale(1.3);
+}
